@@ -1,46 +1,78 @@
-const slot1 = document.getElementById('slot1');
-const slot2 = document.getElementById('slot2');
-const slot3 = document.getElementById('slot3');
-const spinButton = document.getElementById('spinButton');
-
-const texts = ['LUCK', 'FORTUNA', 'SORTE', 'AZAR', 'GANHO', 'PERDA'];
-
-function getRandomText() {
-    const randomIndex = Math.floor(Math.random() * texts.length);
-    return texts[randomIndex];
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
 }
 
-function spinSlots() {
-    // Adiciona a classe de animação
-    slot1.classList.add('spin');
-    slot2.classList.add('spin');
-    slot3.classList.add('spin');
-
-    // Gera textos aleatórios para cada slot
-    setTimeout(() => {
-        slot1.innerText = getRandomText();
-        slot2.innerText = getRandomText();
-        slot3.innerText = getRandomText();
-
-        // Verifica se todas as slots têm "SORTE"
-        if (slot1.innerText === 'SORTE' && slot2.innerText === 'SORTE' && slot3.innerText === 'SORTE') {
-            slot1.style.color = 'green';
-            slot2.style.color = 'green';
-            slot3.style.color = 'green';
-        } else {
-            // Restaura a cor original
-            slot1.style.color = '#ccc';
-            slot2.style.color = '#ccc';
-            slot3.style.color = '#ccc';
-        }
-
-        // Remove a classe de animação após a rotação
-        setTimeout(() => {
-            slot1.classList.remove('spin');
-            slot2.classList.remove('spin');
-            slot3.classList.remove('spin');
-        }, 1000);
-    }, 1000);
+.container {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-spinButton.addEventListener('click', spinSlots);
+.title {
+    color: #4CAF50;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.slot-machine {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.slot {
+    width: 100px;
+    height: 100px;
+    background-color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ccc;
+    border: 2px solid #555;
+    margin: 10px;
+}
+
+.spin-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.spin-button:hover {
+    background-color: #45a049;
+}
+
+#result {
+    font-size: 1.5em;
+    color: white;
+    font-weight: bold;
+}
+
+.spin {
+    animation: spinEffect 1s ease-in-out;
+}
+
+@keyframes spinEffect {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
