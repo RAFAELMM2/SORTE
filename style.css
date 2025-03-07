@@ -1,27 +1,38 @@
+/* Global Styles */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #333;
+    font-family: 'Orbitron', sans-serif;
+    background-color: #111;
     color: white;
     text-align: center;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
+/* Container */
 .container {
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #333, #444);
+    box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.6);
 }
 
+/* Title */
 .title {
-    color: #4CAF50;
-    font-size: 2.5em;
-    margin-bottom: 20px;
+    font-size: 3em;
+    color: #00FF00;
+    margin-bottom: 40px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 20px #00FF00;
 }
 
+/* Slot Machine */
 .slot-machine {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .row {
@@ -30,49 +41,59 @@ body {
     width: 100%;
 }
 
+/* Slot */
 .slot {
-    width: 100px;
-    height: 100px;
-    background-color: #444;
+    width: 120px;
+    height: 120px;
+    background-color: #222;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2em;
+    font-size: 2.5em;
     font-weight: bold;
-    color: #ccc;
-    border: 2px solid #555;
+    color: #ddd;
+    border: 2px solid #444;
     margin: 10px;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
 }
 
+/* Spin Button */
 .spin-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 30px;
+    background-color: #00FF00;
+    color: black;
+    padding: 20px 40px;
     border: none;
     cursor: pointer;
-    font-size: 1.5em;
-    width: 150px;
-    height: 150px;
+    font-size: 2em;
+    width: 200px;
+    height: 200px;
     margin-top: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    border-radius: 50%;
+    transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.6);
 }
 
 .spin-button:hover {
-    background-color: #45a049;
+    background-color: #008800;
+    transform: scale(1.1);
 }
 
 #result {
     font-size: 1.5em;
     color: white;
     font-weight: bold;
+    margin-top: 20px;
+    text-shadow: 0px 0px 10px #00FF00;
 }
 
-.spin {
-    animation: spinEffect 1s ease-in-out;
-}
-
+/* Spin Animation */
 @keyframes spinEffect {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Active Spin Class */
+.spin {
+    animation: spinEffect 1s ease-in-out;
 }
