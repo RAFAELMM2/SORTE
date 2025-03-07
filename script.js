@@ -1,78 +1,25 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JOGO DA SORTE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">JOGO DA SORTE</h1>
+        <div class="slot-machine">
+            <div class="row">
+                <div class="slot" id="slot1">?</div>
+                <div class="slot" id="slot2">?</div>
+                <div class="slot" id="slot3">?</div>
+            </div>
+        </div>
+        <button id="spinButton" class="spin-button">SORTE</button>
+        <div id="result"></div>
+    </div>
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.title {
-    color: #4CAF50;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
-
-.slot-machine {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.row {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-.slot {
-    width: 100px;
-    height: 100px;
-    background-color: #444;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2em;
-    font-weight: bold;
-    color: #ccc;
-    border: 2px solid #555;
-    margin: 10px;
-}
-
-.spin-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 30px;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5em;
-    width: 150px;
-    height: 150px;
-    margin-top: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.spin-button:hover {
-    background-color: #45a049;
-}
-
-#result {
-    font-size: 1.5em;
-    color: white;
-    font-weight: bold;
-}
-
-.spin {
-    animation: spinEffect 1s ease-in-out;
-}
-
-@keyframes spinEffect {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+    <script src="script.js"></script>
+</body>
+</html>
