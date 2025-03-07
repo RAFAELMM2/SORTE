@@ -97,3 +97,10 @@ body {
 .spin {
     animation: rotateSlot 2s ease-out forwards;
 }
+
+/* Chance Text */
+#chance {
+    font-size: 1.5em;
+    color: white;
+    margin-top: 20px;
+}
