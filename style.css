@@ -87,13 +87,13 @@ body {
     text-shadow: 0px 0px 10px #00FF00;
 }
 
-/* Spin Animation */
-@keyframes spinEffect {
+/* Keyframe for Rotation */
+@keyframes rotateSlot {
     0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    100% { transform: rotate(1440deg); } /* 4 full rotations */
 }
 
 /* Active Spin Class */
 .spin {
-    animation: spinEffect 1s ease-in-out;
+    animation: rotateSlot 2s ease-out forwards;
 }
