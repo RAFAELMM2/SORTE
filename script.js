@@ -3,8 +3,13 @@ const slot2 = document.getElementById('slot2');
 const slot3 = document.getElementById('slot3');
 const spinButton = document.getElementById('spinButton');
 const resultText = document.getElementById('result');
+const chanceText = document.getElementById('chance');
 
 const texts = ['LUCK', 'FORTUNA', 'SORTE', 'AZAR', 'GANHO', 'PERDA'];
+
+// Chance de "SORTE" (1 em 12)
+const chanceOfWinning = 12;
+let rolls = 0;  // Contador de tentativas
 
 // Função para gerar texto aleatório
 function getRandomText() {
@@ -14,8 +19,15 @@ function getRandomText() {
 
 // Função para rodar os slots
 function spinSlots() {
+    rolls++;  // Incrementa o número de tentativas
+
+    // Atualiza a porcentagem de chance
+    const chancePercentage = (1 / chanceOfWinning) * 100;
+    chanceText.innerText = `Chance de ganhar: ${chancePercentage}%`;
+
     // Limpa o resultado
     resultText.innerText = '';
+    
     // Adiciona a animação de rotação nas fileiras
     slot1.classList.add('spin');
     slot2.classList.add('spin');
