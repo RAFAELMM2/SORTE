@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SORTE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">SORTE</h1> <!-- Título com a classe 'title' -->
+        <div class="balance">
+            <p>Seu Saldo: <span id="saldo">100</span> Moedas</p>
+        </div>
+        <div class="betting">
+            <label for="betAmount">Quantia para Apostar:</label>
+            <input type="number" id="betAmount" min="1" max="100" value="10">
+            <button id="betButton">Apostar</button>
+        </div>
+        <div class="result">
+            <p id="resultMessage"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
