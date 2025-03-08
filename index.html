@@ -1,35 +1,37 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Aposta - SORTE</title>
+    <title>Jogo da Sorte</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Botões de Cadastro e Login -->
+    <div class="auth-buttons">
+        <button class="auth-button" id="registerButton">Cadastrar</button>
+        <button class="auth-button" id="loginButton">Entrar</button>
+    </div>
+
+    <!-- Container do Jogo -->
     <div class="container">
-        <div class="title">SORTE</div>
-        
-        <!-- Exibindo a chance de ganhar -->
-        <div id="chance" style="font-size: 1.5em; color: white; margin-top: 20px;">Chance de ganhar: 8.33%</div>
-        
-        <!-- Máquina de slots -->
+        <h1 class="title">JOGO DA SORTE</h1>
+
         <div class="slot-machine">
             <div class="row">
-                <div id="slot1" class="slot">LUCK</div>
-                <div id="slot2" class="slot">LUCK</div>
-                <div id="slot3" class="slot">LUCK</div>
+                <div class="slot" id="slot1">?</div>
+                <div class="slot" id="slot2">?</div>
+                <div class="slot" id="slot3">?</div>
             </div>
         </div>
 
-        <!-- Botão de Rodar -->
-        <button id="spinButton" class="spin-button">SORTE</button>
-
-        <!-- Resultado -->
-        <div id="result" style="font-size: 2em; color: white; margin-top: 30px;"></div>
+        <button class="spin-button" id="spinButton">SORTE</button>
+        <p id="result"></p>
+        <p id="chance"></p>
     </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
