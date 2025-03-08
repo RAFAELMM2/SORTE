@@ -1,3 +1,13 @@
+// Botões de Cadastro e Login
+document.getElementById('registerButton').addEventListener('click', function() {
+    window.location.href = 'cadastro.html'; // Redireciona para a página de cadastro
+});
+
+document.getElementById('loginButton').addEventListener('click', function() {
+    window.location.href = 'login.html'; // Redireciona para a página de login
+});
+
+// Slots do jogo
 const slot1 = document.getElementById('slot1');
 const slot2 = document.getElementById('slot2');
 const slot3 = document.getElementById('slot3');
@@ -5,42 +15,37 @@ const spinButton = document.getElementById('spinButton');
 const resultText = document.getElementById('result');
 const chanceText = document.getElementById('chance');
 
+// Lista de textos possíveis nos slots
 const texts = ['LUCK', 'FORTUNA', 'SORTE', 'AZAR', 'GANHO', 'PERDA'];
-const susLetters = ['S', 'U', 'S'];
 
-// Chance de "SUS" (1 em 12 rolls)
+// Chance de ganhar (1 em 12 rolls)
 const chanceOfWinning = 12;
-let rolls = 0;  // Contador de tentativas
+let rolls = 0;
 
-// Função para gerar um número aleatório entre min e max
+// Função para gerar um número aleatório dentro de um intervalo
 function getRandomRolls(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Função para escolher aleatoriamente entre texto normal ou letra "SUS"
+// Função para escolher um texto aleatório e definir a cor
 function getRandomSlotContent() {
-    if (Math.random() < 0.3) { // 30% de chance de cair "SUS"
-        return { text: susLetters[Math.floor(Math.random() * susLetters.length)], color: 'red' };
-    } else { // 70% de chance de cair um texto normal
-        return { text: texts[Math.floor(Math.random() * texts.length)], color: '#ddd' };
-    }
+    let text = texts[Math.floor(Math.random() * texts.length)];
+    let color = text === 'SORTE' ? 'green' : '#ddd';
+    return { text, color };
 }
 
-// Função para rodar os slots
+// Função para rodar a roleta
 function spinSlots() {
-    rolls++;  // Incrementa o número de tentativas
+    rolls++;
 
-    // Atualiza a porcentagem de chance
+    // Atualiza a porcentagem de chance de ganhar
     const chancePercentage = (1 / chanceOfWinning) * 100;
-    chanceText.innerText = `Chance de ganhar: ${chancePercentage}%`;
+    chanceText.innerText = `Chance de ganhar: ${chancePercentage.toFixed(2)}%`;
 
-    // Limpa o resultado
     resultText.innerText = '';
 
-    // Número aleatório de giros (1 a 90)
-    const spinCount = getRandomRolls(1, 90);
-    
-    // Animação dos slots
+    const spinCount = getRandomRolls(10, 90); // Define quantas vezes a roleta vai girar
+
     let spinInterval = setInterval(() => {
         let slotContent1 = getRandomSlotContent();
         let slotContent2 = getRandomSlotContent();
@@ -55,11 +60,10 @@ function spinSlots() {
         slot3.style.color = slotContent3.color;
     }, 100);
 
-    // Para a rotação após "spinCount" tentativas
+    // Define quando a roleta vai parar
     setTimeout(() => {
         clearInterval(spinInterval);
 
-        // Define os resultados finais
         let finalSlot1 = getRandomSlotContent();
         let finalSlot2 = getRandomSlotContent();
         let finalSlot3 = getRandomSlotContent();
@@ -72,16 +76,16 @@ function spinSlots() {
         slot2.style.color = finalSlot2.color;
         slot3.style.color = finalSlot3.color;
 
-        // Verifica se todos os slots têm "SUS" na sequência correta
-        if (slot1.innerText === 'S' && slot2.innerText === 'U' && slot3.innerText === 'S') {
+        // Se os 3 slots forem "SORTE", o jogador ganha
+        if (slot1.innerText === 'SORTE' && slot2.innerText === 'SORTE' && slot3.innerText === 'SORTE') {
             resultText.innerText = 'VOCÊ GANHOU!';
             resultText.style.color = 'green';
         } else {
             resultText.innerText = 'TENTE NOVAMENTE!';
             resultText.style.color = '#fff';
         }
-    }, spinCount * 50); // Tempo de rotação baseado no número aleatório de giros
+    }, spinCount * 50);
 }
 
-// Evento para o botão de rodar
+// Adiciona o evento ao botão de rodar a roleta
 spinButton.addEventListener('click', spinSlots);
