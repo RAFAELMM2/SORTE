@@ -51,7 +51,7 @@ body {
     justify-content: center;
     font-size: 3em;
     font-weight: bold;
-    color: red;  /* Sempre vermelho */
+    color: #ddd; /* Padrão para textos */
     border: 2px solid #444;
     margin: 10px;
     border-radius: 10px;
