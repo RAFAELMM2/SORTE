@@ -5,16 +5,15 @@ const spinButton = document.getElementById('spinButton');
 const resultText = document.getElementById('result');
 const chanceText = document.getElementById('chance');
 
-const texts = ['LUCK', 'FORTUNA', 'SORTE', 'AZAR', 'GANHO', 'PERDA'];
+const susLetters = ['S', 'U', 'S'];
 
-// Chance de "SORTE" (1 em 12)
+// Chance de "SUS" (1 em 12 rolls)
 const chanceOfWinning = 12;
 let rolls = 0;  // Contador de tentativas
 
-// Função para gerar texto aleatório
-function getRandomText() {
-    const randomIndex = Math.floor(Math.random() * texts.length);
-    return texts[randomIndex];
+// Função para gerar um número aleatório entre min e max
+function getRandomRolls(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Função para rodar os slots
@@ -27,41 +26,43 @@ function spinSlots() {
 
     // Limpa o resultado
     resultText.innerText = '';
+
+    // Número aleatório de giros (1 a 90)
+    const spinCount = getRandomRolls(1, 90);
     
-    // Adiciona a animação de rotação nas fileiras
-    slot1.classList.add('spin');
-    slot2.classList.add('spin');
-    slot3.classList.add('spin');
+    // Animação dos slots
+    let spinInterval = setInterval(() => {
+        slot1.innerText = susLetters[Math.floor(Math.random() * susLetters.length)];
+        slot2.innerText = susLetters[Math.floor(Math.random() * susLetters.length)];
+        slot3.innerText = susLetters[Math.floor(Math.random() * susLetters.length)];
 
-    // Gera o texto aleatório após a animação de rotação
+        slot1.style.color = 'red';
+        slot2.style.color = 'red';
+        slot3.style.color = 'red';
+    }, 100);
+
+    // Para a rotação após "spinCount" tentativas
     setTimeout(() => {
-        slot1.innerText = getRandomText();
-        slot2.innerText = getRandomText();
-        slot3.innerText = getRandomText();
+        clearInterval(spinInterval);
 
-        // Verifica se todos os slots têm "SORTE"
-        if (slot1.innerText === 'SORTE' && slot2.innerText === 'SORTE' && slot3.innerText === 'SORTE') {
-            slot1.style.color = 'green';
-            slot2.style.color = 'green';
-            slot3.style.color = 'green';
+        // Define os resultados finais
+        slot1.innerText = susLetters[Math.floor(Math.random() * susLetters.length)];
+        slot2.innerText = susLetters[Math.floor(Math.random() * susLetters.length)];
+        slot3.innerText = susLetters[Math.floor(Math.random() * susLetters.length)];
+
+        slot1.style.color = 'red';
+        slot2.style.color = 'red';
+        slot3.style.color = 'red';
+
+        // Verifica se todos os slots têm "SUS" na sequência correta
+        if (slot1.innerText === 'S' && slot2.innerText === 'U' && slot3.innerText === 'S') {
             resultText.innerText = 'VOCÊ GANHOU!';
             resultText.style.color = 'green';
         } else {
-            // Se não for "SORTE", restaura a cor original
-            slot1.style.color = '#ddd';
-            slot2.style.color = '#ddd';
-            slot3.style.color = '#ddd';
             resultText.innerText = 'TENTE NOVAMENTE!';
             resultText.style.color = '#fff';
         }
-    }, 2000); // Espera o tempo de rotação para mudar os textos
-
-    // Remove a animação após o efeito
-    setTimeout(() => {
-        slot1.classList.remove('spin');
-        slot2.classList.remove('spin');
-        slot3.classList.remove('spin');
-    }, 2000); // A duração da animação
+    }, spinCount * 50); // Tempo de rotação baseado no número aleatório de giros
 }
 
 // Evento para o botão de rodar
