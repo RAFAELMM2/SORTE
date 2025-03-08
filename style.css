@@ -32,7 +32,7 @@ body {
 .slot-machine {
     display: flex;
     justify-content: center;
-    margin-top: 80px;  /* Puxando as fileiras para baixo */
+    margin-top: 80px;
 }
 
 .row {
@@ -49,9 +49,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2.5em;
+    font-size: 3em;
     font-weight: bold;
-    color: #ddd;
+    color: red;  /* Sempre vermelho */
     border: 2px solid #444;
     margin: 10px;
     border-radius: 10px;
@@ -85,17 +85,6 @@ body {
     font-weight: bold;
     margin-top: 20px;
     text-shadow: 0px 0px 10px #00FF00;
-}
-
-/* Keyframe for Rotation */
-@keyframes rotateSlot {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(1440deg); } /* 4 full rotations */
-}
-
-/* Active Spin Class */
-.spin {
-    animation: rotateSlot 2s ease-out forwards;
 }
 
 /* Chance Text */
