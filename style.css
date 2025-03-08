@@ -1,95 +1,91 @@
-/* Global Styles */
-body {
-    font-family: 'Orbitron', sans-serif;
-    background-color: #111;
-    color: white;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+// Botões de Cadastro e Login
+document.getElementById('registerButton').addEventListener('click', function() {
+    window.location.href = 'cadastro.html'; // Redireciona para a página de cadastro
+});
+
+document.getElementById('loginButton').addEventListener('click', function() {
+    window.location.href = 'login.html'; // Redireciona para a página de login
+});
+
+// Slots do jogo
+const slot1 = document.getElementById('slot1');
+const slot2 = document.getElementById('slot2');
+const slot3 = document.getElementById('slot3');
+const spinButton = document.getElementById('spinButton');
+const resultText = document.getElementById('result');
+const chanceText = document.getElementById('chance');
+
+// Lista de textos possíveis nos slots
+const texts = ['LUCK', 'FORTUNA', 'SORTE', 'AZAR', 'GANHO', 'PERDA'];
+
+// Chance de ganhar (1 em 12 rolls)
+const chanceOfWinning = 12;
+let rolls = 0;
+
+// Função para gerar um número aleatório dentro de um intervalo
+function getRandomRolls(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-/* Container */
-.container {
-    max-width: 700px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 20px;
-    background: linear-gradient(to bottom, #333, #444);
-    box-shadow: 0px 0px 15px rgba(0, 255, 0, 0.6);
+// Função para escolher um texto aleatório e definir a cor
+function getRandomSlotContent() {
+    let text = texts[Math.floor(Math.random() * texts.length)];
+    let color = text === 'SORTE' ? 'green' : '#ddd';
+    return { text, color };
 }
 
-/* Title */
-.title {
-    font-size: 3em;
-    color: #00FF00;
-    margin-bottom: 40px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    text-shadow: 0px 0px 20px #00FF00;
+// Função para rodar a roleta
+function spinSlots() {
+    rolls++;
+
+    // Atualiza a porcentagem de chance de ganhar
+    const chancePercentage = (1 / chanceOfWinning) * 100;
+    chanceText.innerText = `Chance de ganhar: ${chancePercentage.toFixed(2)}%`;
+
+    resultText.innerText = '';
+
+    const spinCount = getRandomRolls(10, 90); // Define quantas vezes a roleta vai girar
+
+    let spinInterval = setInterval(() => {
+        let slotContent1 = getRandomSlotContent();
+        let slotContent2 = getRandomSlotContent();
+        let slotContent3 = getRandomSlotContent();
+
+        slot1.innerText = slotContent1.text;
+        slot2.innerText = slotContent2.text;
+        slot3.innerText = slotContent3.text;
+
+        slot1.style.color = slotContent1.color;
+        slot2.style.color = slotContent2.color;
+        slot3.style.color = slotContent3.color;
+    }, 100);
+
+    // Define quando a roleta vai parar
+    setTimeout(() => {
+        clearInterval(spinInterval);
+
+        let finalSlot1 = getRandomSlotContent();
+        let finalSlot2 = getRandomSlotContent();
+        let finalSlot3 = getRandomSlotContent();
+
+        slot1.innerText = finalSlot1.text;
+        slot2.innerText = finalSlot2.text;
+        slot3.innerText = finalSlot3.text;
+
+        slot1.style.color = finalSlot1.color;
+        slot2.style.color = finalSlot2.color;
+        slot3.style.color = finalSlot3.color;
+
+        // Se os 3 slots forem "SORTE", o jogador ganha
+        if (slot1.innerText === 'SORTE' && slot2.innerText === 'SORTE' && slot3.innerText === 'SORTE') {
+            resultText.innerText = 'VOCÊ GANHOU!';
+            resultText.style.color = 'green';
+        } else {
+            resultText.innerText = 'TENTE NOVAMENTE!';
+            resultText.style.color = '#fff';
+        }
+    }, spinCount * 50);
 }
 
-/* Slot Machine */
-.slot-machine {
-    display: flex;
-    justify-content: center;
-    margin-top: 80px;
-}
-
-.row {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-}
-
-/* Slot */
-.slot {
-    width: 120px;
-    height: 120px;
-    background-color: #222;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3em;
-    font-weight: bold;
-    color: #ddd; /* Padrão para textos */
-    border: 2px solid #444;
-    margin: 10px;
-    border-radius: 10px;
-    transition: 0.3s ease-in-out;
-}
-
-/* Spin Button */
-.spin-button {
-    background-color: #00FF00;
-    color: black;
-    padding: 20px 40px;
-    border: none;
-    cursor: pointer;
-    font-size: 2em;
-    width: 200px;
-    height: 200px;
-    margin-top: 20px;
-    border-radius: 50%;
-    transition: transform 0.2s ease-in-out, background-color 0.3s ease-in-out;
-    box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.6);
-}
-
-.spin-button:hover {
-    background-color: #008800;
-    transform: scale(1.1);
-}
-
-#result {
-    font-size: 1.5em;
-    color: white;
-    font-weight: bold;
-    margin-top: 20px;
-    text-shadow: 0px 0px 10px #00FF00;
-}
-
-/* Chance Text */
-#chance {
-    font-size: 1.5em;
-    color: white;
-    margin-top: 20px;
-}
+// Adiciona o evento ao botão de rodar a roleta
+spinButton.addEventListener('click', spinSlots);
